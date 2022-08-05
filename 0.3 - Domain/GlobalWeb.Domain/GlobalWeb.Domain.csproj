@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\0.4 - Infra\4.1 - Data\GlobalWeb.Infra.Data\GlobalWeb.Infra.Data.csproj" />
+    <ProjectReference Include="..\..\0.4 - Infra\4.2 - Repository\GlobalWeb.Infra.Repository\GlobalWeb.Infra.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
