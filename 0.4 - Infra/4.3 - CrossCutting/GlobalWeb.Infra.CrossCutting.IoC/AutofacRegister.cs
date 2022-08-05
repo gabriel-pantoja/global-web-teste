@@ -12,7 +12,6 @@ namespace GlobalWeb.Infra.CrossCutting.IoC
     {
         protected override void Load(ContainerBuilder builder)
         {
-
             builder.RegisterType<ClientApplication>()
                 .As<IClientApplication>()
                 .InstancePerDependency();
