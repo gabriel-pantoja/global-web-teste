@@ -21,24 +21,50 @@ namespace GlobalWeb.Infra.Repository
             });
             return clients;
         }
-        public Task<Client> Add(Client entity)
+
+        public async Task<Client> Get(int id)
         {
-            throw new System.NotImplementedException();
+            return new Client()
+            {
+                Id = 1,
+                FullName = "Gabriel",
+                Document = "22",
+                Birthday = System.DateTime.Now,
+                DateRegister = System.DateTime.Now,
+                Active = true
+            };
         }
 
-        public Task<Client> Delete(int id)
+
+        public async Task<Client> Add(Client entity)
         {
-            throw new System.NotImplementedException();
+            return new Client()
+            {
+                Id = entity.Id,
+                FullName = entity.FullName,
+                Document = entity.Document,
+                Birthday = entity.Birthday,
+                DateRegister = System.DateTime.Now,
+                Active = true
+            };
         }
 
-        public Task<Client> Get(int id)
+        public async Task<Client> Update(Client entity)
         {
-            throw new System.NotImplementedException();
+            return new Client()
+            {
+                Id = entity.Id,
+                FullName = entity.FullName,
+                Document = entity.Document,
+                Birthday = entity.Birthday,
+                DateRegister = System.DateTime.Now,
+                Active = true
+            };
         }
 
-        public Task<Client> Update(Client entity)
+        public async Task<bool> Delete(int id)
         {
-            throw new System.NotImplementedException();
+            return true;
         }
     }
 }

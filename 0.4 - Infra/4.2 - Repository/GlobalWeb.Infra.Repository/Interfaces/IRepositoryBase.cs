@@ -9,6 +9,6 @@ namespace GlobalWeb.Infra.Repository.Interfaces
         Task<TEntity> Get(int id);
         Task<TEntity> Add(TEntity entity);
         Task<TEntity> Update(TEntity entity);
-        Task<TEntity> Delete(int id);
+        Task<bool> Delete(int id);
     }
 }

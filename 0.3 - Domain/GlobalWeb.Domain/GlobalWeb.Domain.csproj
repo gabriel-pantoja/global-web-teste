@@ -9,4 +9,8 @@
     <ProjectReference Include="..\..\0.4 - Infra\4.2 - Repository\GlobalWeb.Infra.Repository\GlobalWeb.Infra.Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+  </ItemGroup>
+
 </Project>
