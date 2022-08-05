@@ -1,7 +1,6 @@
-﻿using GlobalWeb.Application.DTOs;
-using GlobalWeb.Application.Interfaces;
+﻿using GlobalWeb.Application.Interfaces;
+using GlobalWeb.Domain.Request;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GlobalWeb.API.Controllers
@@ -32,14 +31,14 @@ namespace GlobalWeb.API.Controllers
 
         // POST api/<ClientController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] ClientDTORequest body)
+        public async Task<IActionResult> Post([FromBody] ClientRequest body)
         {
             return Ok(await _clientService.Add(body));
         }
 
         // PUT api/<ClientController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] ClientDTORequest body)
+        public async Task<IActionResult> Put(int id, [FromBody] ClientRequest body)
         {
             return Ok(await _clientService.Update(body));
         }

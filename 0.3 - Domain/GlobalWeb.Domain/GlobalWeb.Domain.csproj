@@ -5,12 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\0.4 - Infra\4.1 - Data\GlobalWeb.Infra.Data\GlobalWeb.Infra.Data.csproj" />
-    <ProjectReference Include="..\..\0.4 - Infra\4.2 - Repository\GlobalWeb.Infra.Repository\GlobalWeb.Infra.Repository.csproj" />
+    <PackageReference Include="FluentValidation" Version="11.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <ProjectReference Include="..\..\0.4 - Infra\4.1 - Data\GlobalWeb.Infra.Data\GlobalWeb.Infra.Data.csproj" />
+    <ProjectReference Include="..\..\0.4 - Infra\4.2 - Repository\GlobalWeb.Infra.Repository\GlobalWeb.Infra.Repository.csproj" />
+    <ProjectReference Include="..\..\0.4 - Infra\4.4 - Middleware\GlobalWeb.Infra.Middleware\GlobalWeb.Infra.Middleware.csproj" />
   </ItemGroup>
 
 </Project>

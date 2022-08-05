@@ -1,8 +1,6 @@
 using Autofac;
-using AutoMapper;
-using GlobalWeb.Application.AutoMappers;
-using GlobalWeb.Domain.AutoMappers;
 using GlobalWeb.Infra.CrossCutting.IoC;
+using GlobalWeb.Infra.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -29,14 +27,6 @@ namespace GlobalWeb.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GlobalWeb.API", Version = "v1" });
             });
-
-            #region MAPPER
-            
-            services.AddSingleton<AutoMapper.IConfigurationProvider>(AutoMapperConfigApplication.RegisterMappings());
-            services.AddSingleton<AutoMapper.IConfigurationProvider>(AutoMapperConfigDomain.RegisterMappings());
-            services.AddScoped<IMapper>(x => new Mapper(x.GetRequiredService<AutoMapper.IConfigurationProvider>(), x.GetService));
-
-            #endregion
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -53,6 +43,8 @@ namespace GlobalWeb.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GlobalWeb.API v1"));
             }
+
+            app.UseMiddleware(typeof(ErrorMiddleware));
 
             app.UseHttpsRedirection();
 

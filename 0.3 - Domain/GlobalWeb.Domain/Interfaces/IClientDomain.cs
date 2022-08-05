@@ -1,4 +1,4 @@
-﻿using GlobalWeb.Domain.Models;
+﻿using GlobalWeb.Domain.Request;
 using GlobalWeb.Infra.Data.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,8 +9,8 @@ namespace GlobalWeb.Domain.Interfaces
     {
         Task<List<Client>> GetAll();
         Task<Client> Get(int id);
-        Task<Client> Add(ClientModelRequest entity);
-        Task<Client> Update(ClientModelRequest entity);
+        Task<Client> Add(ClientRequest entity);
+        Task<Client> Update(ClientRequest entity);
         Task<bool> Delete(int id);
     }
 }

@@ -15,7 +15,7 @@ namespace GlobalWeb.Infra.Repository
                 Id = 1,
                 FullName = "Gabriel",
                 Document = "22",
-                Birthday = System.DateTime.Now,
+                BirthDate = System.DateTime.Now,
                 DateRegister = System.DateTime.Now,
                 Active = true
             });
@@ -29,7 +29,7 @@ namespace GlobalWeb.Infra.Repository
                 Id = 1,
                 FullName = "Gabriel",
                 Document = "22",
-                Birthday = System.DateTime.Now,
+                BirthDate = System.DateTime.Now,
                 DateRegister = System.DateTime.Now,
                 Active = true
             };
@@ -43,7 +43,7 @@ namespace GlobalWeb.Infra.Repository
                 Id = entity.Id,
                 FullName = entity.FullName,
                 Document = entity.Document,
-                Birthday = entity.Birthday,
+                BirthDate = entity.BirthDate,
                 DateRegister = System.DateTime.Now,
                 Active = true
             };
@@ -56,7 +56,7 @@ namespace GlobalWeb.Infra.Repository
                 Id = entity.Id,
                 FullName = entity.FullName,
                 Document = entity.Document,
-                Birthday = entity.Birthday,
+                BirthDate = entity.BirthDate,
                 DateRegister = System.DateTime.Now,
                 Active = true
             };

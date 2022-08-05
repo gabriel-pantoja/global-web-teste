@@ -1,14 +1,13 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
 
-namespace GlobalWeb.Infra.Data.Entities
+namespace GlobalWeb.Application.DTOs
 {
-    public class Client : Base
-    {
+    public class ClientDTO
+    { 
         public string FullName { get; set; }
         public DateTime BirthDate { get; set; }
         public string Document { get; set; }
         public string Address { get; set; }
-        public DateTime DateRegister { get; set; }
-        public bool Active { get; set; }
     }
 }

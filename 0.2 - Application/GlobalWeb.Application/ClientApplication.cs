@@ -1,8 +1,7 @@
-﻿using AutoMapper;
-using GlobalWeb.Application.DTOs;
-using GlobalWeb.Application.Interfaces;
+﻿using GlobalWeb.Application.Interfaces;
 using GlobalWeb.Domain.Interfaces;
 using GlobalWeb.Domain.Models;
+using GlobalWeb.Domain.Request;
 using GlobalWeb.Infra.Data.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,12 +11,10 @@ namespace GlobalWeb.Application
     public class ClientApplication : IClientApplication
     {
         private readonly IClientDomain _clientService;
-        private readonly IMapper _mapper;
 
-        public ClientApplication(IClientDomain clientService, IMapper mapper)
+        public ClientApplication(IClientDomain clientService)
         {
             _clientService = clientService;
-            _mapper = mapper;
         }
 
         public async Task<List<Client>> GetAll()
@@ -30,16 +27,14 @@ namespace GlobalWeb.Application
             return await _clientService.Get(id);
         }
 
-        public async Task<Client> Add(ClientDTORequest entity)
+        public async Task<Client> Add(ClientRequest entity)
         {
-            ClientModelRequest client = _mapper.Map<ClientModelRequest>(entity);
-            return await _clientService.Add(client);
+            return await _clientService.Add(entity);
         }
 
-        public async Task<Client> Update(ClientDTORequest entity)
+        public async Task<Client> Update(ClientRequest entity)
         {
-            ClientModelRequest client = _mapper.Map<ClientModelRequest>(entity);
-            return await _clientService.Update(client);
+            return await _clientService.Update(entity);
         }
 
         public async Task<bool> Delete(int id)
