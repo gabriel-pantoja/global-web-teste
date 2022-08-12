@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  globalweb:
+    image: globalweb
+    depends_on:
+      - postgres
+    ports:
+      - "8000:80"
+    build:
+      context: .
+      dockerfile: 0.1 - Presentation/GlobalWeb.API/Dockerfile
+    container_name: globalwebapi
+    environment:
+      DB_CONNECTION: "Host=127.0.0.1;Port=5432;Database=your_db;Username=your_user;Password=your_secret"
+    restart: on-failure
+    links:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    container_name: "postgres"
+    restart: always
+    volumes:
+      - ./postgres:/var/lib/postgres
+    environment:
+      - POSTGRES_DB=your_db
+      - POSTGRES_USER=your_user
+      - POSTGRES_PASSWORD=your_secret
+    
+
+    

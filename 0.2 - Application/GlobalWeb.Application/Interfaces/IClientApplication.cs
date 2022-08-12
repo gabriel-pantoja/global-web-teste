@@ -7,10 +7,10 @@ namespace GlobalWeb.Application.Interfaces
 {
     public interface IClientApplication
     {
-        public Task<List<Client>> GetAll();
+        Task<List<Client>> GetAll();
         Task<Client> Get(int id);
-        Task<Client> Add(ClientRequest entity);
-        Task<Client> Update(ClientRequest entity);
-        Task<bool> Delete(int id);
+        Task Add(ClientRequest entity);
+        Task Update(int id, ClientRequest entity);
+        Task Delete(int id);
     }
 }

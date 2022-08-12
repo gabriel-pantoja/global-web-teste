@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GlobalWeb.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/client")]
     [ApiController]
     public class ClientController : ControllerBase
     {
@@ -26,28 +26,31 @@ namespace GlobalWeb.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(await _clientService.GetAll());
+            return Ok(await _clientService.Get(id));
         }
 
         // POST api/<ClientController>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] ClientRequest body)
         {
-            return Ok(await _clientService.Add(body));
+            await _clientService.Add(body);
+            return Ok(true);
         }
 
         // PUT api/<ClientController>/5
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] ClientRequest body)
         {
-            return Ok(await _clientService.Update(body));
+            await _clientService.Update(id, body);
+            return Ok(true);
         }
 
         // DELETE api/<ClientController>/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            return Ok(await _clientService.Delete(id));
+            await _clientService.Delete(id);
+            return Ok(true);
         }
     }
 }

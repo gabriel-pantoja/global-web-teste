@@ -1,5 +1,8 @@
-﻿using GlobalWeb.Infra.Data.Entities;
+﻿using GlobalWeb.Infra.Data.Contexts;
+using GlobalWeb.Infra.Data.Entities;
 using GlobalWeb.Infra.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -7,64 +10,45 @@ namespace GlobalWeb.Infra.Repository
 {
     public class ClientRepository : IClientRepository
     {
+        private readonly PostgresSQL _context;
+        public ClientRepository(PostgresSQL context)
+        {
+            _context = context;
+        }
         public async Task<List<Client>> GetAll()
         {
-            List<Client> clients = new();
-            clients.Add(new Client()
-            {
-                Id = 1,
-                FullName = "Gabriel",
-                Document = "22",
-                BirthDate = System.DateTime.Now,
-                DateRegister = System.DateTime.Now,
-                Active = true
-            });
+            List<Client> clients = await _context.Client.ToListAsync();
             return clients;
         }
 
         public async Task<Client> Get(int id)
         {
-            return new Client()
-            {
-                Id = 1,
-                FullName = "Gabriel",
-                Document = "22",
-                BirthDate = System.DateTime.Now,
-                DateRegister = System.DateTime.Now,
-                Active = true
-            };
+            Client client = await _context.Client.SingleOrDefaultAsync(x => x.Id.Equals(id));
+            return client;
         }
 
-
-        public async Task<Client> Add(Client entity)
+        public async Task<Client> GetByDocument(string document)
         {
-            return new Client()
-            {
-                Id = entity.Id,
-                FullName = entity.FullName,
-                Document = entity.Document,
-                BirthDate = entity.BirthDate,
-                DateRegister = System.DateTime.Now,
-                Active = true
-            };
+            Client client = await _context.Client.FirstOrDefaultAsync(x => x.Document == document);
+            return client;
         }
 
-        public async Task<Client> Update(Client entity)
+        public async Task Add(Client entity)
         {
-            return new Client()
-            {
-                Id = entity.Id,
-                FullName = entity.FullName,
-                Document = entity.Document,
-                BirthDate = entity.BirthDate,
-                DateRegister = System.DateTime.Now,
-                Active = true
-            };
+            _context.Client.Add(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task Update(Client entity)
         {
-            return true;
+            _context.Client.Update(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task Delete(Client entity)
+        {
+            _context.Client.Remove(entity);
+            await _context.SaveChangesAsync();
         }
     }
 }

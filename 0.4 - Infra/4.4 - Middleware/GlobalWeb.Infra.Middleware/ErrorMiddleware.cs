@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Npgsql;
 using System;
 using System.Net;
 using System.Threading.Tasks;
@@ -37,10 +38,10 @@ namespace GlobalWeb.Infra.Middleware
             {
                 await HandleExceptionAsync(context, ex, ex.HttpStatusCode, ex.Title);
             }
-            //catch (SqlException ex)
-            //{
-            //    await HandleExceptionAsync(context, ex, 500, "Internal Server Error Sql Server");
-            //}
+            catch (NpgsqlException ex)
+            {
+                await HandleExceptionAsync(context, ex, 500, "Internal Server Error DB");
+            }
             catch (Exception ex)
             {
                 await HandleExceptionAsync(context, ex, 500, "Internal Server Error API");

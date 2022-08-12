@@ -27,19 +27,19 @@ namespace GlobalWeb.Application
             return await _clientService.Get(id);
         }
 
-        public async Task<Client> Add(ClientRequest entity)
+        public async Task Add(ClientRequest entity)
         {
-            return await _clientService.Add(entity);
+            await _clientService.Add(entity);
         }
 
-        public async Task<Client> Update(ClientRequest entity)
+        public async Task Update(int id, ClientRequest entity)
         {
-            return await _clientService.Update(entity);
+            await _clientService.Update(id, entity);
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task Delete(int id)
         {
-            return await _clientService.Delete(id);
+            await _clientService.Delete(id);
         }
     }
 }

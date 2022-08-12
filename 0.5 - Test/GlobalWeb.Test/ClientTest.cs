@@ -72,5 +72,28 @@ namespace GlobalWeb.Test
             Assert.Contains(ex.Message, "Documento deve ser informado.");
             Assert.True(true);
         }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void New_Client_Address_Null_Or_Empty_Is_Invalid(string address)
+        {
+
+            ClientRequest client = new()
+            {
+                FullName = _request.FullName,
+                Document = _request.Document,
+                Address = address,
+                BirthDate = _request.BirthDate
+            };
+
+            var response = _clientApplication.Add(client);
+            CustomException ex = (CustomException)response.Exception.InnerException;
+
+            Assert.Equal(422, ex.HttpStatusCode);
+            Assert.Contains(ex.Title, "Invalid Attribute");
+            Assert.Contains(ex.Message, "Endereço deve ser informado.");
+            Assert.True(true);
+        }
     }
 }
