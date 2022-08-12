@@ -25,8 +25,7 @@ namespace GlobalWeb.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //var connectionString = "Server=172.23.0.2;Port=5432;Database=your_db;Username=your_user;Password=your_secret";
-            var connectionString = "Server=localhost;Port=5432;Database=your_db;Username=your_user;Password=your_secret";
+            var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION");
             services.AddDbContext<PostgresSQL>(options => options.UseNpgsql(connectionString));
 
             #region CORS

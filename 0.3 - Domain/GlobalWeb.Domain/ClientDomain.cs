@@ -66,7 +66,10 @@ namespace GlobalWeb.Domain
             Client client = await _clientRepository.Get(id);
             if (client == null)
                 throw new CustomException("Cliente não encontrado", (int)HttpStatusCode.BadRequest, "Rule Validation");
-           
+
+            if (await _clientRepository.GetByDocument(entity.Document) != null)
+                throw new CustomException("Documento já existente", (int)HttpStatusCode.BadRequest, "Rule Validation");
+
             client.FullName = entity.FullName;
             client.Document = entity.Document;
             client.Address = entity.Address;

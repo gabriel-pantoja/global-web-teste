@@ -10,31 +10,46 @@ namespace GlobalWeb.Infra.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Client> builder)
         {
+            builder.ToTable("client");
+
             builder
               .HasKey(i => i.Id);
 
             builder
+                .Property(i => i.Id)
+                .HasColumnName("id");
+
+            builder
                 .Property(i => i.FullName)
                 .IsRequired()
-                .HasColumnType("varchar(250)");
+                .HasColumnType("varchar(250)")
+                .HasColumnName("fullname");
 
             builder
                 .Property(i => i.Document)
                 .IsRequired()
-                .HasColumnType("varchar(20)");
+                .HasColumnType("varchar(20)")
+                .HasColumnName("document");
 
             builder
                 .Property(i => i.BirthDate)
-                .IsRequired();
+                .IsRequired()
+                .HasColumnName("birthdate");
 
             builder
                 .Property(i => i.Address)
                 .IsRequired()
-                .HasColumnType("varchar(250)");
+                .HasColumnType("varchar(250)")
+                .HasColumnName("address");
 
             builder
                 .Property(i => i.DateRegister)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValue(DateTime.Now)
+                .HasColumnName("dateregister");
+
+            builder
+                .Property(i => i.Active)
+                .HasColumnName("active");
         }
         public static void PreLoadedData(ModelBuilder modelBuilder)
         {
@@ -43,10 +58,11 @@ namespace GlobalWeb.Infra.Data.Mappings
                 new Client()
                 {
                     Id = 1,
-                    FullName = "Gabriel Pantoja",
-                    Document = "1111",
-                    Address = "Teste",
-                    BirthDate = new DateTime(1991, 09, 11),
+                    FullName = "Guilherme Enrico Pietro Nascimento",
+                    Document = "08276305903",
+                    Address = "Quadra SGAN 914 Módulo C",
+                    BirthDate = new DateTime(2001, 01, 08),
+                    DateRegister = new DateTime(2022, 08, 12),
                     Active = true
                 }
             };

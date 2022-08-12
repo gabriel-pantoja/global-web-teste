@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GlobalWeb.Infra.Data.Migrations
 {
     [DbContext(typeof(PostgresSQL))]
-    [Migration("20220810151246_InitialCreate")]
+    [Migration("20220812111646_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,40 +26,52 @@ namespace GlobalWeb.Infra.Data.Migrations
                     b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
+                        .HasColumnName("id")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Active")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("active");
 
                     b.Property<string>("Address")
-                        .HasColumnType("varchar(250)");
+                        .IsRequired()
+                        .HasColumnType("varchar(250)")
+                        .HasColumnName("address");
 
                     b.Property<DateTime>("BirthDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("birthdate");
 
                     b.Property<DateTime>("DateRegister")
-                        .HasColumnType("timestamp without time zone");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValue(new DateTime(2022, 8, 12, 12, 16, 46, 169, DateTimeKind.Local).AddTicks(34))
+                        .HasColumnName("dateregister");
 
                     b.Property<string>("Document")
-                        .HasColumnType("varchar(20)");
+                        .IsRequired()
+                        .HasColumnType("varchar(20)")
+                        .HasColumnName("document");
 
                     b.Property<string>("FullName")
-                        .HasColumnType("varchar(250)");
+                        .IsRequired()
+                        .HasColumnType("varchar(250)")
+                        .HasColumnName("fullname");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Client");
+                    b.ToTable("client");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             Active = true,
-                            Address = "Teste",
-                            BirthDate = new DateTime(2022, 8, 10, 16, 12, 45, 960, DateTimeKind.Local).AddTicks(6957),
-                            DateRegister = new DateTime(2022, 8, 10, 16, 12, 45, 966, DateTimeKind.Local).AddTicks(624),
-                            Document = "1111",
-                            FullName = "Gabriel Pantoja"
+                            Address = "Quadra SGAN 914 Módulo C",
+                            BirthDate = new DateTime(2001, 1, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateRegister = new DateTime(2022, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Document = "08276305903",
+                            FullName = "Guilherme Enrico Pietro Nascimento"
                         });
                 });
 #pragma warning restore 612, 618
